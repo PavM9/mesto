@@ -2,8 +2,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
   align-items: flex-start;
-  margin: 45px 200px 0;
+  margin: 45px 15.6% 0;
   max-width: 1280px;
   height: 74px;
   -webkit-box-sizing: border-box;

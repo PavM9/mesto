@@ -1,0 +1,9 @@
+.profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 40px 15.6% 0;
+  max-width: 1280px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
