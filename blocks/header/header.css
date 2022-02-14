@@ -1,0 +1,12 @@
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: flex-start;
+  margin: 45px 200px 0;
+  max-width: 1280px;
+  height: 74px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-bottom: 1px solid #545454;
+}
