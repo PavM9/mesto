@@ -1,5 +1,5 @@
 .profile__info {
-  display: -webkit-box;
+  /* display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
@@ -10,8 +10,13 @@
   flex-wrap: wrap;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center;
+  align-items: center; */
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: repeat(2, auto);
   color: #fff;
   width: 336px;
   margin-left: 30px;
+  row-gap: 16px;
+  column-gap: 18px;
 }
