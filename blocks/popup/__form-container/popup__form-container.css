@@ -5,3 +5,9 @@
   border: none;
   box-sizing: border-box;
 }
+
+@media screen and (max-width: 425px) {
+  .popup__form-container {
+    margin-top: 75px;
+  }
+}
