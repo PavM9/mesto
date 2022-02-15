@@ -6,3 +6,10 @@
   box-sizing: border-box;
   border-bottom: 1px solid #545454;
 }
+
+@media screen and (max-width: 425px) {
+  .header {
+    margin-top: 28px;
+    height: 56px;
+  }
+}

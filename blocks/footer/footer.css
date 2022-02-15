@@ -4,3 +4,10 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+@media screen and (max-width: 425px) {
+  .footer {
+    margin-top: 48px;
+  }
+}
+
