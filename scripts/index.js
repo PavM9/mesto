@@ -1,30 +1,54 @@
-const popupEditProfileButtonElement = document.querySelector('.profile__edit-button')
-const popupEditProfileElement = document.querySelector('.popup_edit-profile')
-const popupCloseButtonElement = popupEditProfileElement.querySelector('.popup__close-button')
-const popupSubmitButtonElement = popupEditProfileElement.querySelector('popup__submit-button')
-let popupProfileName =  popupEditProfileElement.querySelector('popup__form-item_input_name')
-let popupProfileDescription =  popupEditProfileElement.querySelector('popup__form-item_input_description')
+const editProfileButton = document.querySelector('.profile__edit-button')
+const editProfilePopup = document.querySelector('.popup_edit-profile')
+const popupCloseButton = editProfilePopup.querySelector('.popup__close-button')
+const popupSubmitButton = editProfilePopup.querySelector('popup__submit-button')
+const popupForm = editProfilePopup.querySelector('.popup__form-container')
+const popupFormSubmitButton = editProfilePopup.querySelector('.popup__submit-button')
+let popupProfileName =  popupForm.querySelector('.popup__form-item_input_name')
+let popupProfileDescription = popupForm.querySelector('.popup__form-item_input_description')
+let profileName = document.querySelector('.profile__name')
+let profileDescription = document.querySelector('.profile__description')
 
-const togglePopupVisibility = function() {
-  popupEditProfileElement.classList.toggle('popup_is-opened')
+const openPopup = function() {
+  editProfilePopup.classList.add('popup_is-opened')
 }
 const closePopup = function() {
-  popupEditProfileElement.classList.remove('popup_is-opened')
+  editProfilePopup.classList.remove('popup_is-opened')
 }
 const closePopupByOverlay = function(event) {
-  console.log(event.target, event.currentTarget)
-  if (event.target !== event.currentTarget) {
+   if (event.target !== event.currentTarget) {
     return
   }
   closePopup()
 }
+const addInputValues = function() {
+  popupProfileName.value = profileName.textContent
+  popupProfileDescription.value = profileDescription.textContent
+}
+// Обработчик «отправки» формы, хотя пока
+// она никуда отправляться не будет
+function formSubmitHandler (evt) {
+    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+                                                // Так мы можем определить свою логику отправки.
+                                                // О том, как это делать, расскажем позже.
 
-popupEditProfileButtonElement.addEventListener('click', togglePopupVisibility)
-popupCloseButtonElement.addEventListener('click', closePopup)
-popupEditProfileElement.addEventListener('click', closePopupByOverlay)
-let ProfileName = document.querySelector('.profile__name')
-console.log(ProfileName)
-console.log(ProfileName.textContent)
-popupProfileName.insertAdjacentText('afterbegin',ProfileName.textContent)
-// // popupProfileName = document.querySelector('.profile__name')
-console.log(popupProfileName.textContent)
+    // Получите значение полей jobInput и nameInput из свойства value
+
+    // Выберите элементы, куда должны быть вставлены значения полей
+
+    // Вставьте новые значения с помощью textContent
+    profileName.textContent = popupProfileName.value
+    profileDescription.textContent = popupProfileDescription.value
+}
+
+// Прикрепляем обработчик к форме:
+// он будет следить за событием “submit” - «отправка»
+popupFormSubmitButton.addEventListener('submit', formSubmitHandler);
+
+
+editProfileButton.addEventListener('click', openPopup)
+editProfileButton.addEventListener('click', addInputValues)
+popupCloseButton.addEventListener('click', closePopup)
+editProfilePopup.addEventListener('click', closePopupByOverlay)
+
+
