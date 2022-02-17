@@ -4,10 +4,10 @@
   background-size: contain;
   background-repeat: no-repeat;
   padding: 0;
-  /* margin-bottom: 7px; */
+  margin-bottom: 7px;
   background-image: url(../../../images/Edit-Button.svg);
-  width: 24px;
-  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
   -webkit-transition: opacity 0.3s;
   -moz-transition: opacity 0.3s;
   -ms-transition: opacity 0.3s;
@@ -23,7 +23,8 @@
 
 @media screen and (max-width: 425px) {
   .profile__edit-button {
-    width: 18px;
-    height: 18px;
+    min-width: 18px;
+    min-height: 18px;
+    margin-bottom: 6px;
   }
 }
