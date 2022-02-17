@@ -13,7 +13,6 @@
   -ms-transition: opacity 0.3s;
   -o-transition: opacity 0.3s;
   transition: opacity 0.3s;
-  align-self: end;
 }
 
 .profile__edit-button:hover {
