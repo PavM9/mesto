@@ -11,5 +11,84 @@
     <header class="header">
       <img class="header__logo" src="./images/mesto-logo.svg" alt="Mesto Russia">
     </header>
+    <main>
+      <section class="popup popup_edit-profile">
+        <div class="popup__container">
+          <div class="popup__content">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <form class="popup__form-container">
+              <input class="popup__form-item popup__form-item_input_name" type="text" name="profile-name" placeholder="Имя" value="">
+              <input class="popup__form-item popup__form-item_input_description" type="text" name="profile-description" placeholder="Описание" value="">
+              <button class="popup__submit-button" type="submit">Сохранить</button>
+            </form>
+          </div>
+          <button class="popup__close-button"></button>
+        </div>
+      </section>
+
+      <section class="profile">
+        <img class="profile__image" src="./images/Cousteau.jpg" alt="Аватар профиля">
+        <div class="profile__info">
+          <div class="profile__name-container">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="profile__edit-button"></button>
+          </div>
+          <p class="profile__description">Исследователь океана</p>
+        </div>
+        <button class="profile__add-card-button"></button>
+      </section>
+
+      <section class="cards" aria-label="Галерея фото">
+        <ul class="cards__container">
+          <li class="card">
+            <img class="card__image" src="./images/teriberka.jpg" alt="Заброшенное судно на песчаном берегу">
+            <div class="card__info">
+              <h2 class="card__title">Териберка</h2>
+              <button class="card__like-button"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img class="card__image" src="./images/kamchatka.jpg" alt="Вершина горы в облаках">
+            <div class="card__info">
+              <h2 class="card__title">Камчатка</h2>
+              <button class="card__like-button"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img class="card__image" src="./images/kabardino-balkaria.jpg" alt="Река в горной долине">
+            <div class="card__info">
+              <h2 class="card__title">Кабардино-Балкария</h2>
+              <button class="card__like-button"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img class="card__image" src="./images/altai.jpg" alt="Река в горной долине">
+            <div class="card__info">
+              <h2 class="card__title">Алтай</h2>
+              <button class="card__like-button"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img class="card__image" src="./images/ural.jpg" alt="Горный хребет на фоне заката">
+            <div class="card__info">
+              <h2 class="card__title">Урал</h2>
+              <button class="card__like-button"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img class="card__image" src="./images/karelia.jpg" alt="Деревянная церковь">
+            <div class="card__info">
+              <h2 class="card__title">Карелия</h2>
+              <button class="card__like-button"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+    </footer>
+  </div>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
