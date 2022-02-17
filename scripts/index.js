@@ -14,6 +14,9 @@ const openPopup = function() {
 }
 const closePopup = function() {
   editProfilePopup.classList.remove('popup_is-opened')
+  addInputValues()
+  // popupProfileName.value = profileName.textContent
+  // popupProfileDescription.value = profileDescription.textContent
 }
 const closePopupByOverlay = function(event) {
    if (event.target !== event.currentTarget) {
@@ -27,8 +30,8 @@ const addInputValues = function() {
 }
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
-function formSubmitHandler (evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+function formSubmitHandler (event) {
+    event.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
                                                 // Так мы можем определить свою логику отправки.
                                                 // О том, как это делать, расскажем позже.
 
@@ -37,15 +40,20 @@ function formSubmitHandler (evt) {
     // Выберите элементы, куда должны быть вставлены значения полей
 
     // Вставьте новые значения с помощью textContent
+    // let profile1 = profileName
+    // let profile2 = profileDescription
+
+    // profile1.textContent = popupProfileName.value
+    // profile2.textContent = popupProfileDescription.value
+
     profileName.textContent = popupProfileName.value
     profileDescription.textContent = popupProfileDescription.value
+    closePopup()
 }
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-popupFormSubmitButton.addEventListener('submit', formSubmitHandler);
-
-
+popupFormSubmitButton.addEventListener('click', formSubmitHandler);
 editProfileButton.addEventListener('click', openPopup)
 editProfileButton.addEventListener('click', addInputValues)
 popupCloseButton.addEventListener('click', closePopup)
