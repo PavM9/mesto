@@ -1,9 +1,7 @@
 const editProfileButton = document.querySelector('.profile__edit-button')
-const editProfilePopup = document.querySelector('.popup_edit-profile')
+const editProfilePopup = document.querySelector('.popup')
 const popupCloseButton = editProfilePopup.querySelector('.popup__close-button')
-const popupSubmitButton = editProfilePopup.querySelector('popup__submit-button')
 const popupForm = editProfilePopup.querySelector('.popup__form-container')
-const popupFormSubmitButton = editProfilePopup.querySelector('.popup__submit-button')
 let popupProfileName =  popupForm.querySelector('.popup__form-item_input_name')
 let popupProfileDescription = popupForm.querySelector('.popup__form-item_input_description')
 let profileName = document.querySelector('.profile__name')
@@ -14,7 +12,6 @@ const openPopup = function() {
 }
 const closePopup = function() {
   editProfilePopup.classList.remove('popup_is-opened')
-  addInputValues()
 }
 const closePopupByOverlay = function(event) {
    if (event.target !== event.currentTarget) {
@@ -34,9 +31,11 @@ function formSubmitHandler (event) {
     closePopup()
 }
 
-popupFormSubmitButton.addEventListener('click', formSubmitHandler);
-editProfileButton.addEventListener('click', openPopup)
-editProfileButton.addEventListener('click', addInputValues)
+popupForm.addEventListener('submit', formSubmitHandler)
+editProfileButton.addEventListener('click', function() {
+  openPopup()
+  addInputValues()
+})
 popupCloseButton.addEventListener('click', closePopup)
 editProfilePopup.addEventListener('click', closePopupByOverlay)
 
