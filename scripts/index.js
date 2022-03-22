@@ -72,7 +72,8 @@ const addCardSubmitHandler = function (event) {
   event.preventDefault();
   renderCards({
     name: cardNameInputValue.value,
-    link: cardLinkInputValue.value
+    link: cardLinkInputValue.value,
+    alt: cardNameInputValue.value
   }, cardsContainer);
   addCardForm.reset();
   closePopup(addCardPopup);
