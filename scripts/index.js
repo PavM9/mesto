@@ -6,8 +6,9 @@ const popupElement = document.querySelectorAll('.popup')
 const editProfilePopup = document.querySelector('.popup_type_edit-profile')
 const addCardPopup = document.querySelector('.popup_type_add-card')
 const fullScreenPopup = document.querySelector('.popup_type_image-fullscreen')
-// const popupImage = document.querySelector('.popup_image')
-// const imageCaption = document.querySelector('.popup_image-caption')
+const popupImageContainer = fullScreenPopup.querySelector('.popup__image-container')
+const popupImage = popupImageContainer.querySelector('.popup__image');
+const popupImageCaption = popupImageContainer.querySelector('.popup__image-caption');
 const popupCloseButton = document.querySelector('.popup__close-button')
 const popupForm = document.querySelector('.popup__form-container')
 let popupProfileName =  popupForm.querySelector('.popup__form-item_input_name')
@@ -54,34 +55,13 @@ const deleteCard = function (event) {
     event.target.closest('.card').remove();
 };
 
-// const openFullScreenPopup = function (event) {
-//     const selectedCard = event.target.closest ('.card');
-//     const selectedCardImage = selectedCard.querySelector('.card__image');
-//     const selectedCardTitle = selectedCard.querySelector('.card__title');
-//     const popupImageContainer = document.querySelector('.popup__image-container')
-//     const popupImage = popupImageContainer.querySelector('.popup_image');
-//     const imageCaption = popupImageContainer.querySelector('.popup_image-caption');
-//     popupImage.src = selectedCardImage.getAttribute("src");
-//     popupImage.alt = selectedCardImage.getAttribute("alt");
-//     imageCaption.textContent = selectedCardTitle.textContent;
-//     openPopup(fullScreenPopup);
-// }
-
 const openFullScreenPopup = function (item) {
-    const popupImageContainer = document.querySelector('.popup__image-container')
-    const popupImage = popupImageContainer.querySelector('.popup_image');
-    const imageCaption = popupImageContainer.querySelector('.popup_image-caption');
-    popupImage.src = item.link;
-    popupImage.alt = item.alt;
-    imageCaption.textContent = item.name;
-    openPopup(fullScreenPopup);
+  popupImage.src = item.link;
+  popupImage.alt = item.alt;
+  popupImageCaption.textContent = item.name;
+  openPopup(fullScreenPopup);
 };
-// const cardImage = cardElement.querySelector('.card__image');
-// const cardTitle = cardElement.querySelector('.card__title');
-// const likeButton = cardElement.querySelector('.card__like-button');
-// const deleteButton = cardElement.querySelector('.card__delete-button');
-// const popupImage = document.querySelector('.popup_image')
-// const imageCaption = document.querySelector('.popup_image-caption')
+
 const initializeCard = function (item) {
   const cardTemplate = document.querySelector('#card-template').content;
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -89,26 +69,14 @@ const initializeCard = function (item) {
   const cardTitle = cardElement.querySelector('.card__title');
   const likeButton = cardElement.querySelector('.card__like-button');
   const deleteButton = cardElement.querySelector('.card__delete-button');
-  // const popupImage = document.querySelector('.popup_image');
-  // const imageCaption = document.querySelector('.popup_image-caption');
   cardImage.src = item.link;
   cardImage.alt = item.alt;
   cardTitle.textContent = item.name;
   likeButton.addEventListener('click', likeCard);
   deleteButton.addEventListener('click', deleteCard);
-  cardImage.addEventListener('click', openFullScreenPopup);
-  // cardImage.addEventListener('click', function () {
-  //   openFullScreenPopup ()
-  // });
-//   cardImage.addEventListener('click', function () {
-//     openPopup(fullScreenPopup);
-//     const popupImageContainer = document.querySelector('.popup__image-container')
-//     const popupImage = popupImageContainer.querySelector('.popup_image');
-//     const imageCaption = popupImageContainer.querySelector('.popup_image-caption');
-//     popupImage.src = item.link;
-//     popupImage.alt = item.alt;
-//     imageCaption.textContent = item.name;
-// });
+  cardImage.addEventListener('click', function () {
+    openFullScreenPopup (item)
+  });
   return cardElement;
 };
 
