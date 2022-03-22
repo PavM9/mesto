@@ -1,20 +1,31 @@
-const cardsContainer = document.querySelector('.cards__container')
+// переменные элементов страницы
+const cardsContainer = document.querySelector('.cards__container');
+const popupElement = document.querySelectorAll('.popup');
+const profileName = document.querySelector('.profile__name');
+const profileDescription = document.querySelector('.profile__description');
 
-const editProfileButton = document.querySelector('.profile__edit-button')
-const addCardButton = document.querySelector('.profile__add-card-button')
-const popupElement = document.querySelectorAll('.popup')
-const editProfilePopup = document.querySelector('.popup_type_edit-profile')
-const addCardPopup = document.querySelector('.popup_type_add-card')
+//переменные для кнопок
+const editProfileButton = document.querySelector('.profile__edit-button');
+const addCardButton = document.querySelector('.profile__add-card-button');
+const popupCloseButton = document.querySelector('.popup__close-button');
+
+// переменные для editProfilePopup
+const editProfilePopup = document.querySelector('.popup_type_edit-profile');
+const editProfilePopupForm = editProfilePopup.querySelector('.popup__form-container');
+const popupProfileName =  editProfilePopupForm.querySelector('.popup__form-item_input_name');
+const popupProfileDescription = editProfilePopupForm.querySelector('.popup__form-item_input_description');
+
+// переменные для addCardPopup
+const addCardPopup = document.querySelector('.popup_type_add-card');
+const addCardForm = addCardPopup.querySelector('.popup__form-container');
+const cardNameInputValue = addCardForm.querySelector('.popup__form-item_input_name');
+const cardLinkInputValue = addCardForm.querySelector('.popup__form-item_input_description');
+
+// переменные для fullScreenPopup
 const fullScreenPopup = document.querySelector('.popup_type_image-fullscreen')
-const popupImageContainer = fullScreenPopup.querySelector('.popup__image-container')
+const popupImageContainer = fullScreenPopup.querySelector('.popup__image-container');
 const popupImage = popupImageContainer.querySelector('.popup__image');
 const popupImageCaption = popupImageContainer.querySelector('.popup__image-caption');
-const popupCloseButton = document.querySelector('.popup__close-button')
-const popupForm = document.querySelector('.popup__form-container')
-let popupProfileName =  popupForm.querySelector('.popup__form-item_input_name')
-let popupProfileDescription = popupForm.querySelector('.popup__form-item_input_description')
-let profileName = document.querySelector('.profile__name')
-let profileDescription = document.querySelector('.profile__description')
 
 const initialCards = [
   {
@@ -48,6 +59,7 @@ const initialCards = [
     alt: 'Деревянная церковь'
   }
 ];
+
 const likeCard = function(event) {
   event.target.classList.toggle('card__like-button_is-active');
 };
@@ -82,21 +94,22 @@ const initializeCard = function (item) {
 
 const renderCards = function (item, cardsContainer) {
   const cardElement = initializeCard(item);
-  cardsContainer.append(cardElement);
+  cardsContainer.prepend(cardElement);
 };
 
 initialCards.forEach(function(item) {
   renderCards(item, cardsContainer);
 });
 
-// const handleCardFormSubmit = (evt) => {
-//   evt.preventDefault();
-//   renderCard({
-//     name: cardNameInputValue.value,
-//     link: cardLinkInputValue.value
-//   }, placesWrap);
-//   closeModalWindow(cardFormModalWindow);
-// };
+const addCardSubmitHandler = function (event) {
+  event.preventDefault();
+  renderCards({
+    name: cardNameInputValue.value,
+    link: cardLinkInputValue.value
+  }, cardsContainer);
+  closePopup(addCardPopup);
+};
+addCardForm.addEventListener('submit', addCardSubmitHandler);
 
 const openPopup = function(popup) {
   popup.classList.add('popup_is-opened')
@@ -122,14 +135,14 @@ const addInputValues = function() {
   popupProfileDescription.value = profileDescription.textContent
 }
 
-function formSubmitHandler (event) {
+function editProfileSubmitHandler (event) {
     event.preventDefault();
     profileName.textContent = popupProfileName.value
     profileDescription.textContent = popupProfileDescription.value
     closePopup(editProfilePopup)
 }
 
-popupForm.addEventListener('submit', formSubmitHandler)
+editProfilePopupForm.addEventListener('submit', editProfileSubmitHandler)
 editProfileButton.addEventListener('click', function() {
   openPopup(editProfilePopup)
   addInputValues()
