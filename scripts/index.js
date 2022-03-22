@@ -1,8 +1,9 @@
 // переменные элементов страницы
 const cardsContainer = document.querySelector('.cards__container');
-const popupElement = document.querySelectorAll('.popup');
+const popupElements = document.querySelectorAll('.popup');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
+const cardTemplate = document.querySelector('#card-template').content;
 
 //переменные для кнопок
 const editProfileButton = document.querySelector('.profile__edit-button');
@@ -27,39 +28,6 @@ const popupImageContainer = fullScreenPopup.querySelector('.popup__image-contain
 const popupImage = popupImageContainer.querySelector('.popup__image');
 const popupImageCaption = popupImageContainer.querySelector('.popup__image-caption');
 
-const initialCards = [
-  {
-    name: 'Териберка',
-    link: 'images/teriberka.jpg',
-    alt: 'Заброшенное судно на песчаном берегу'
-  },
-  {
-    name: 'Камчатка',
-    link: 'images/kamchatka.jpg',
-    alt: 'Вершина горы в облаках'
-  },
-  {
-    name: 'Кабардино-Балкария',
-    link: 'images/kabardino-balkaria.jpg',
-    alt: 'Река в горной долине'
-  },
-  {
-    name: 'Алтай',
-    link: 'images/altai.jpg',
-    alt: 'Река в горной долине'
-  },
-  {
-    name: 'Урал',
-    link: 'images/ural.jpg',
-    alt: 'Горный хребет на фоне заката'
-  },
-  {
-    name: 'Карелия',
-    link: 'images/karelia.jpg',
-    alt: 'Деревянная церковь'
-  }
-];
-
 const likeCard = function(event) {
   event.target.classList.toggle('card__like-button_is-active');
 };
@@ -69,20 +37,19 @@ const deleteCard = function (event) {
 
 const openFullScreenPopup = function (item) {
   popupImage.src = item.link;
-  popupImage.alt = item.alt;
+  popupImage.alt = item.alt ? item.alt : item.name;
   popupImageCaption.textContent = item.name;
   openPopup(fullScreenPopup);
 };
 
 const initializeCard = function (item) {
-  const cardTemplate = document.querySelector('#card-template').content;
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image');
   const cardTitle = cardElement.querySelector('.card__title');
   const likeButton = cardElement.querySelector('.card__like-button');
   const deleteButton = cardElement.querySelector('.card__delete-button');
   cardImage.src = item.link;
-  cardImage.alt = item.alt;
+  cardImage.alt = item.alt ? item.alt : item.name;
   cardTitle.textContent = item.name;
   likeButton.addEventListener('click', likeCard);
   deleteButton.addEventListener('click', deleteCard);
@@ -113,10 +80,10 @@ const addCardSubmitHandler = function (event) {
 addCardForm.addEventListener('submit', addCardSubmitHandler);
 
 const openPopup = function(popup) {
-  popup.classList.add('popup_is-opened')
+  popup.classList.add('popup_is-opened');
 }
 const closePopup = function(popup) {
-  popup.classList.remove('popup_is-opened')
+  popup.classList.remove('popup_is-opened');
 }
 
 const closePopupByClick = function(popup) {
@@ -129,27 +96,28 @@ const closePopupByClick = function(popup) {
     };
   });
 };
-popupElement.forEach(closePopupByClick);
+popupElements.forEach(closePopupByClick);
 
 const addInputValues = function() {
-  popupProfileName.value = profileName.textContent
-  popupProfileDescription.value = profileDescription.textContent
+  popupProfileName.value = profileName.textContent;
+  popupProfileDescription.value = profileDescription.textContent;
 }
 
 function editProfileSubmitHandler (event) {
     event.preventDefault();
-    profileName.textContent = popupProfileName.value
-    profileDescription.textContent = popupProfileDescription.value
-    closePopup(editProfilePopup)
+    profileName.textContent = popupProfileName.value;
+    profileDescription.textContent = popupProfileDescription.value;
+    closePopup(editProfilePopup);
 }
 
-editProfilePopupForm.addEventListener('submit', editProfileSubmitHandler)
-editProfileButton.addEventListener('click', function() {
-  openPopup(editProfilePopup)
-  addInputValues()
-});
+const fillProfileForm = function() {
+  openPopup(editProfilePopup);
+  addInputValues();
+};
+editProfilePopupForm.addEventListener('submit', editProfileSubmitHandler);
+editProfileButton.addEventListener('click', fillProfileForm);
 addCardButton.addEventListener('click', function() {
-  openPopup(addCardPopup)
+  openPopup(addCardPopup);
 });
 
 
