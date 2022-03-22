@@ -26,48 +26,6 @@
 
       <section class="cards" aria-label="Галерея фото">
         <ul class="cards__container">
-          <!-- <li class="card">
-            <img class="card__image" src="./images/teriberka.jpg" alt="Заброшенное судно на песчаном берегу">
-            <div class="card__info">
-              <h2 class="card__title">Териберка</h2>
-              <button class="card__like-button" type="button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/kamchatka.jpg" alt="Вершина горы в облаках">
-            <div class="card__info">
-              <h2 class="card__title">Камчатка</h2>
-              <button class="card__like-button" type="button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/kabardino-balkaria.jpg" alt="Река в горной долине">
-            <div class="card__info">
-              <h2 class="card__title">Кабардино-Балкария</h2>
-              <button class="card__like-button" type="button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/altai.jpg" alt="Река в горной долине">
-            <div class="card__info">
-              <h2 class="card__title">Алтай</h2>
-              <button class="card__like-button" type="button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/ural.jpg" alt="Горный хребет на фоне заката">
-            <div class="card__info">
-              <h2 class="card__title">Урал</h2>
-              <button class="card__like-button" type="button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/karelia.jpg" alt="Деревянная церковь">
-            <div class="card__info">
-              <h2 class="card__title">Карелия</h2>
-              <button class="card__like-button" type="button"></button>
-            </div>
-          </li> -->
         </ul>
       </section>
     </main>
@@ -93,7 +51,7 @@
       <div class="popup__container">
         <div class="popup__content">
           <h2 class="popup__title">Новое место</h2>
-          <form class="popup__form-container" name="edit-profile-form">
+          <form class="popup__form-container" name="add-card-form">
             <input class="popup__form-item popup__form-item_input_name" type="text" name="profile-name" placeholder="Название" value="">
             <input class="popup__form-item popup__form-item_input_description" type="text" name="profile-description" placeholder="Ссылка на картинку" value="">
             <button class="popup__submit-button" type="submit">Создать</button>
@@ -105,7 +63,7 @@
 
     <section class="popup popup_type_image-fullscreen">
       <figure class="popup__image-container">
-        <img class="popup__image" src="" alt="">
+        <img class="popup__image" src=" " alt=" ">
         <figcaption class="popup__image-caption"></figcaption>
         <button class="popup__close-button" type="button"></button>
       </figure>
@@ -113,7 +71,7 @@
   </div>
   <template id="card-template">
     <li class="card">
-      <img class="card__image" src="" alt="">
+      <img class="card__image" src=" " alt=" ">
       <div class="card__info">
         <h2 class="card__title"></h2>
         <button class="card__like-button" type="button"></button>
