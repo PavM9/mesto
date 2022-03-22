@@ -126,7 +126,7 @@ function formSubmitHandler (event) {
     event.preventDefault();
     profileName.textContent = popupProfileName.value
     profileDescription.textContent = popupProfileDescription.value
-    closePopup()
+    closePopup(editProfilePopup)
 }
 
 popupForm.addEventListener('submit', formSubmitHandler)
