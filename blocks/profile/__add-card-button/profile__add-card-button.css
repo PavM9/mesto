@@ -18,6 +18,11 @@
   cursor: pointer;
 }
 
+
+.profile__add-card-button:focus {   /* убирает изменение контура кнопки при закрытии попапа через Esc */
+  outline: none;
+}
+
 @media screen and (max-width: 680px) {
   .profile__add-card-button {
     margin: 36px 0 0;

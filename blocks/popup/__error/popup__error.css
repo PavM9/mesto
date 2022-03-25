@@ -1,0 +1,15 @@
+.popup__error {
+  display: inline-block;
+  width: 100%;
+  color: #ff0000;
+  min-height: 12px;
+  margin: 0 auto 13px;
+  padding: 0;
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 400;
+  vertical-align: top;
+  box-sizing: border-box;
+  border: none;
+  visibility: hidden;
+}
