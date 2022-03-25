@@ -30,21 +30,21 @@ const popupImageContainer = fullScreenPopup.querySelector('.popup__image-contain
 const popupImage = popupImageContainer.querySelector('.popup__image');
 const popupImageCaption = popupImageContainer.querySelector('.popup__image-caption');
 
-const likeCard = function(event) {
-  event.target.classList.toggle('card__like-button_is-active');
+const likeCard = (evt) => {
+  evt.target.classList.toggle('card__like-button_is-active');
 };
-const deleteCard = function (event) {
-    event.target.closest('.card').remove();
+const deleteCard = (evt) => {
+    evt.target.closest('.card').remove();
 };
 
-const openFullScreenPopup = function (item) {
+const openFullScreenPopup = (item) => {
   popupImage.src = item.link;
   popupImage.alt = item.alt ? item.alt : item.name;
   popupImageCaption.textContent = item.name;
   openPopup(fullScreenPopup);
 };
 
-const initializeCard = function (item) {
+const initializeCard = (item) => {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image');
   const cardTitle = cardElement.querySelector('.card__title');
@@ -55,28 +55,28 @@ const initializeCard = function (item) {
   cardTitle.textContent = item.name;
   likeButton.addEventListener('click', likeCard);
   deleteButton.addEventListener('click', deleteCard);
-  cardImage.addEventListener('click', function () {
+  cardImage.addEventListener('click', () => {
     openFullScreenPopup (item)
   });
   return cardElement;
 };
 
-const renderCards = function (item, cardsContainer) {
+const renderCards = (item, cardsContainer) => {
   const cardElement = initializeCard(item);
   cardsContainer.prepend(cardElement);
 };
 
-initialCards.forEach(function(item) {
+initialCards.forEach((item) => {
   renderCards(item, cardsContainer);
 });
 
-const preventSubmitReactivation = function (item) {
+const preventSubmitReactivation = (item) => {
   item.classList.add('popup__submit-button_disabled');
   item.disabled = true;
 }
 
-const addCardSubmitHandler = function (event) {
-  event.preventDefault();
+const addCardSubmitHandler = (evt) => {
+  evt.preventDefault();
   preventSubmitReactivation(addCardSubmitButton);
   renderCards({
     name: cardNameInputValue.value,
@@ -88,28 +88,28 @@ const addCardSubmitHandler = function (event) {
 };
 addCardForm.addEventListener('submit', addCardSubmitHandler);
 
-const openPopup = function(popup) {
+const openPopup = (popup) => {
   popup.classList.add('popup_is-opened');
   document.addEventListener('keydown', closePopupByEsc)
 }
-const closePopup = function(popup) {
+const closePopup = (popup) => {
   popup.classList.remove('popup_is-opened');
   document.removeEventListener('keydown', closePopupByEsc)
 }
 
-const closePopupByClick = function(popup) {
-  popup.addEventListener('click', function (event) {
-    if (event.target.classList.contains('popup_is-opened')) {
+const closePopupByClick = (popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup_is-opened')) {
       closePopup(popup);
     };
-    if (event.target.classList.contains('popup__close-button')) {
+    if (evt.target.classList.contains('popup__close-button')) {
       closePopup(popup);
     };
   });
 };
 
-const closePopupByEsc = function(event) {
-    if (event.key === "Escape") {
+const closePopupByEsc = (evt) => {
+    if (evt.key === "Escape") {
       const openedPopup = document.querySelector('.popup_is-opened');
       closePopup(openedPopup);
     };
@@ -117,26 +117,26 @@ const closePopupByEsc = function(event) {
 popupElements.forEach(closePopupByClick);
 popupElements.forEach(closePopupByEsc);
 
-const addInputValues = function() {
+const addInputValues = () => {
   popupProfileName.value = profileName.textContent;
   popupProfileDescription.value = profileDescription.textContent;
 }
 
-function editProfileSubmitHandler (event) {
-    event.preventDefault();
+const editProfileSubmitHandler = (evt) => {
+    evt.preventDefault();
     preventSubmitReactivation(editProfileSubmitButton);
     profileName.textContent = popupProfileName.value;
     profileDescription.textContent = popupProfileDescription.value;
     closePopup(editProfilePopup);
 }
 
-const fillProfileForm = function() {
+const fillProfileForm = () => {
   openPopup(editProfilePopup);
   addInputValues();
 };
 editProfileForm.addEventListener('submit', editProfileSubmitHandler);
 editProfileButton.addEventListener('click', fillProfileForm);
-addCardButton.addEventListener('click', function() {
+addCardButton.addEventListener('click', () => {
   openPopup(addCardPopup);
 });
 
