@@ -114,8 +114,6 @@ const closePopupByEsc = (evt) => {
       closePopup(openedPopup);
     };
 };
-popupElements.forEach(closePopupByClick);
-popupElements.forEach(closePopupByEsc);
 
 const addInputValues = () => {
   popupProfileName.value = profileName.textContent;
@@ -138,7 +136,9 @@ editProfileForm.addEventListener('submit', editProfileSubmitHandler);
 editProfileButton.addEventListener('click', fillProfileForm);
 addCardButton.addEventListener('click', () => {
   openPopup(addCardPopup);
+  addCardForm.reset();
 });
+popupElements.forEach(closePopupByClick);
 
 
 
