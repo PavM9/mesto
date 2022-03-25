@@ -6,27 +6,26 @@ const profileDescription = document.querySelector('.profile__description');
 const cardTemplate = document.querySelector('#card-template').content;
 
 //переменные для кнопок
-const editProfileButton = document.querySelector('.profile__edit-button');
-const addCardButton = document.querySelector('.profile__add-card-button');
-const popupCloseButton = document.querySelector('.popup__close-button');
+const buttonEditProfile = document.querySelector('.profile__edit-button');
+const buttAddCard = document.querySelector('.profile__add-card-button');
 
-// переменные для editProfilePopup
-const editProfilePopup = document.querySelector('.popup_type_edit-profile');
-const editProfileForm = editProfilePopup.querySelector('.popup__form-container');
-const popupProfileName =  editProfileForm.querySelector('.popup__form-item_input_name');
-const popupProfileDescription = editProfileForm.querySelector('.popup__form-item_input_description');
-const editProfileSubmitButton = editProfileForm.querySelector('.popup__submit-button');
+// переменные для popupEditProfile
+const popupEditProfile = document.querySelector('.popup_type_edit-profile');
+const formEditProfile = popupEditProfile.querySelector('.popup__form-container');
+const popupProfileName =  formEditProfile.querySelector('.popup__form-item_input_name');
+const popupProfileDescription = formEditProfile.querySelector('.popup__form-item_input_description');
+const submitButtonEditProfile = formEditProfile.querySelector('.popup__submit-button');
 
-// переменные для addCardPopup
-const addCardPopup = document.querySelector('.popup_type_add-card');
-const addCardForm = addCardPopup.querySelector('.popup__form-container');
-const cardNameInputValue = addCardForm.querySelector('.popup__form-item_card_title');
-const cardLinkInputValue = addCardForm.querySelector('.popup__form-item_card_link');
-const addCardSubmitButton = addCardForm.querySelector('.popup__submit-button');
+// переменные для popupAddCard
+const popupAddCard = document.querySelector('.popup_type_add-card');
+const formAddCard = popupAddCard.querySelector('.popup__form-container');
+const cardNameInputValue = formAddCard.querySelector('.popup__form-item_card_title');
+const cardLinkInputValue = formAddCard.querySelector('.popup__form-item_card_link');
+const submitButtonAddCard = formAddCard.querySelector('.popup__submit-button');
 
-// переменные для fullScreenPopup
-const fullScreenPopup = document.querySelector('.popup_type_image-fullscreen')
-const popupImageContainer = fullScreenPopup.querySelector('.popup__image-container');
+// переменные для popupFullScreen
+const popupFullScreen = document.querySelector('.popup_type_image-fullscreen')
+const popupImageContainer = popupFullScreen.querySelector('.popup__image-container');
 const popupImage = popupImageContainer.querySelector('.popup__image');
 const popupImageCaption = popupImageContainer.querySelector('.popup__image-caption');
 
@@ -41,20 +40,20 @@ const openFullScreenPopup = (item) => {
   popupImage.src = item.link;
   popupImage.alt = item.alt ? item.alt : item.name;
   popupImageCaption.textContent = item.name;
-  openPopup(fullScreenPopup);
+  openPopup(popupFullScreen);
 };
 
 const initializeCard = (item) => {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image');
   const cardTitle = cardElement.querySelector('.card__title');
-  const likeButton = cardElement.querySelector('.card__like-button');
-  const deleteButton = cardElement.querySelector('.card__delete-button');
+  const buttonLike = cardElement.querySelector('.card__like-button');
+  const buttonDelete = cardElement.querySelector('.card__delete-button');
   cardImage.src = item.link;
   cardImage.alt = item.alt ? item.alt : item.name;
   cardTitle.textContent = item.name;
-  likeButton.addEventListener('click', likeCard);
-  deleteButton.addEventListener('click', deleteCard);
+  buttonLike.addEventListener('click', likeCard);
+  buttonDelete.addEventListener('click', deleteCard);
   cardImage.addEventListener('click', () => {
     openFullScreenPopup (item)
   });
@@ -77,16 +76,16 @@ const preventSubmitReactivation = (item) => {
 
 const addCardSubmitHandler = (evt) => {
   evt.preventDefault();
-  preventSubmitReactivation(addCardSubmitButton);
+  preventSubmitReactivation(submitButtonAddCard);
   renderCards({
     name: cardNameInputValue.value,
     link: cardLinkInputValue.value,
     alt: cardNameInputValue.value
   }, cardsContainer);
-  addCardForm.reset();
-  closePopup(addCardPopup);
+  formAddCard.reset();
+  closePopup(popupAddCard);
 };
-addCardForm.addEventListener('submit', addCardSubmitHandler);
+formAddCard.addEventListener('submit', addCardSubmitHandler);
 
 const openPopup = (popup) => {
   popup.classList.add('popup_is-opened');
@@ -99,10 +98,7 @@ const closePopup = (popup) => {
 
 const closePopupByClick = (popup) => {
   popup.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup_is-opened')) {
-      closePopup(popup);
-    };
-    if (evt.target.classList.contains('popup__close-button')) {
+    if (evt.target.classList.contains('popup_is-opened') || evt.target.classList.contains('popup__close-button')){
       closePopup(popup);
     };
   });
@@ -122,21 +118,21 @@ const addInputValues = () => {
 
 const editProfileSubmitHandler = (evt) => {
     evt.preventDefault();
-    preventSubmitReactivation(editProfileSubmitButton);
+    preventSubmitReactivation(submitButtonEditProfile);
     profileName.textContent = popupProfileName.value;
     profileDescription.textContent = popupProfileDescription.value;
-    closePopup(editProfilePopup);
+    closePopup(popupEditProfile);
 }
 
 const fillProfileForm = () => {
-  openPopup(editProfilePopup);
+  openPopup(popupEditProfile);
   addInputValues();
 };
-editProfileForm.addEventListener('submit', editProfileSubmitHandler);
-editProfileButton.addEventListener('click', fillProfileForm);
-addCardButton.addEventListener('click', () => {
-  openPopup(addCardPopup);
-  addCardForm.reset();
+formEditProfile.addEventListener('submit', editProfileSubmitHandler);
+buttonEditProfile.addEventListener('click', fillProfileForm);
+buttAddCard.addEventListener('click', () => {
+  openPopup(popupAddCard);
+  formAddCard.reset();
 });
 popupElements.forEach(closePopupByClick);
 
