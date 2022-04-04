@@ -7,7 +7,7 @@ const cardTemplate = document.querySelector('#card-template').content;
 
 //переменные для кнопок
 const buttonEditProfile = document.querySelector('.profile__edit-button');
-const buttAddCard = document.querySelector('.profile__add-card-button');
+const buttonAddCard = document.querySelector('.profile__add-card-button');
 
 // переменные для popupEditProfile
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
@@ -130,7 +130,7 @@ const fillProfileForm = () => {
 };
 formEditProfile.addEventListener('submit', editProfileSubmitHandler);
 buttonEditProfile.addEventListener('click', fillProfileForm);
-buttAddCard.addEventListener('click', () => {
+buttonAddCard.addEventListener('click', () => {
   openPopup(popupAddCard);
   formAddCard.reset();
 });
