@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
   {
     name: 'Териберка',
     link: 'images/teriberka.jpg',
@@ -30,3 +30,12 @@ const initialCards = [
     alt: 'Деревянная церковь'
   }
 ];
+
+export const settingsObj = {
+  formSelector: '.popup__form-container',
+  inputSelector: '.popup__form-item',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  inputErrorClass: 'popup__form-item_invalid',
+  errorClassVisible: 'popup__error_visible'
+}
