@@ -31,17 +31,9 @@ export const editProfileSubmitHandler = (evt) => {
   closePopup(popupEditProfile);
 }
 
-export const openFullScreenPopup = (_item) => {
-  this._popupImage.src = this._item._link;
-  this._popupImage.alt = this._item._alt ? this._item._alt : this._item._title;
-  this._popupImageCaption.textContent = this._item._title;
-  openPopup(popupFullScreen);
-};
-
-export const likeCard = (evt) => {
-  evt.target.classList.toggle('card__like-button_is-active');
-};
-
-export const deleteCard = (evt) => {
-    evt.target.closest('.card').remove();
-};
+// export const openFullScreenPopup = (_item) => {
+//   this._popupImage.src = this._item._link;
+//   this._popupImage.alt = this._item._alt ? this._item._alt : this._item._title;
+//   this._popupImageCaption.textContent = this._item._title;
+//   openPopup(popupFullScreen);
+// };

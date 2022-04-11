@@ -1,6 +1,4 @@
 import { openPopup } from "./utils.js";
-import { likeCard } from "./utils.js";
-import { deleteCard } from "./utils.js";
 
 const popupFullScreen = document.querySelector('.popup_type_image-fullscreen')
 const popupImageContainer = popupFullScreen.querySelector('.popup__image-container');
@@ -38,8 +36,12 @@ export class Card {
   _setEventListeners () {
     this._buttonLike = this._element.querySelector('.card__like-button');
     this._buttonDelete = this._element.querySelector('.card__delete-button');
-    this._buttonLike.addEventListener('click', likeCard);
-    this._buttonDelete.addEventListener('click', deleteCard);
+    this._buttonLike.addEventListener('click', (evt) => {
+      evt.target.classList.toggle('card__like-button_is-active');
+    });
+    this._buttonDelete.addEventListener('click', (evt) => {
+      evt.target.closest('.card').remove();
+    });
     this._cardImage.addEventListener('click', () => {
       popupImage.src = this._link;
       popupImage.alt = this._alt ? this._alt : this._title;
