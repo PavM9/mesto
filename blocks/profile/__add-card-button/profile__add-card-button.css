@@ -8,6 +8,7 @@
   -ms-transition: opacity 0.3s;
   -o-transition: opacity 0.3s;
   transition: opacity 0.3s;
+  transition: 0.3s;
   border: none;
   background-color: unset;
   padding: 0;
