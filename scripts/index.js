@@ -89,7 +89,7 @@ formAddCard.addEventListener('submit', addCardSubmitHandler);
 formEditProfile.addEventListener('submit', editProfileSubmitHandler);
 buttonEditProfile.addEventListener('click', fillProfileForm);
 buttonAddCard.addEventListener('click', () => {
-  openPopup(popupAddCard);
   formAddCard.reset();
+  openPopup(popupAddCard);
 });
 popupElements.forEach(closePopupByClick);

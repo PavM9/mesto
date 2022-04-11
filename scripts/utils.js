@@ -23,13 +23,13 @@ export const closePopupByEsc = (evt) => {
     };
 };
 
-export const editProfileSubmitHandler = (evt) => {
-  evt.preventDefault();
-  preventSubmitReactivation(submitButtonEditProfile);
-  profileName.textContent = popupProfileName.value;
-  profileDescription.textContent = popupProfileDescription.value;
-  closePopup(popupEditProfile);
-}
+// export const editProfileSubmitHandler = (evt) => {
+//   evt.preventDefault();
+//   preventSubmitReactivation(submitButtonEditProfile);
+//   profileName.textContent = popupProfileName.value;
+//   profileDescription.textContent = popupProfileDescription.value;
+//   closePopup(popupEditProfile);
+// }
 
 // export const openFullScreenPopup = (_item) => {
 //   this._popupImage.src = this._item._link;
