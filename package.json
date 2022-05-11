@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "src/pages/index.js",
   "scripts": {
-    "build": "rm -rf dist && webpack --mode production",
+    "build": "rimraf dist && webpack",
     "dev": "webpack serve"
   },
   "repository": {
@@ -32,7 +32,8 @@
     "webpack-dev-server": "^4.9.0"
   },
   "dependencies": {
-    "core-js": "^3.22.5"
+    "core-js": "^3.22.5",
+    "rimraf": "^3.0.2"
   },
   "keywords": [],
   "description": ""

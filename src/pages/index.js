@@ -13,7 +13,7 @@ import { cardsContainerSelector, cardTemplateSelector, profileNameSelector, prof
   popupProfileName, popupProfileDescription, formAddCard, initialCards, settingsObj } from '../utils/constants.js';
 
 // запуск валидации форм
-const ProfileInfo = new UserInfo({name: profileNameSelector, description: profileDescriptionSelector});
+const profileInfo = new UserInfo({name: profileNameSelector, description: profileDescriptionSelector});
 const profileValidation = new FormValidator(settingsObj, formEditProfile);
 const addCardValidation = new FormValidator(settingsObj, formAddCard);
 profileValidation.enableValidation();
@@ -24,7 +24,7 @@ const createNewCard = (item) => {
   const card = new Card({
     item,
     handleCardClick: () => {
-      PopupImage.open(item)
+      popupWithImage.open(item)
     }
   }, cardTemplateSelector);
   return card.initializeCard();
@@ -41,34 +41,36 @@ cardList.addInitialItems();
 
 
 // создание попапов
-const PopupImage = new PopupWithImage('.popup_type_image-fullscreen');
-const PopupEditProfile = new PopupWithForm('.popup_type_edit-profile', {
+const popupWithImage = new PopupWithImage('.popup_type_image-fullscreen');
+const popupEditProfile = new PopupWithForm('.popup_type_edit-profile', {
   handleFormSubmit: (item) => {
-    ProfileInfo.setUserInfo(item.name, item.description);
+    profileInfo.setUserInfo(item);
      },
 });
 
-const PopupAddCard = new PopupWithForm('.popup_type_add-card', {
+const popupAddCard = new PopupWithForm('.popup_type_add-card', {
   handleFormSubmit: (item) => {
     cardList.addItem(createNewCard(item));
      },
   });
 
 // обработчики событий
-PopupImage.setEventListeners();
-PopupEditProfile.setEventListeners();
-PopupAddCard.setEventListeners();
+popupWithImage.setEventListeners();
+popupEditProfile.setEventListeners();
+popupAddCard.setEventListeners();
+
+const handleEditProfile = () => {
+  profileValidation.toggleButtonState();
+  const { name, description } = profileInfo.getUserInfo();
+  popupProfileName.value = name;
+  popupProfileDescription.value = description;
+  popupEditProfile.open();
+}
 
 // отслеживание кнопок
-buttonEditProfile.addEventListener('click', function() {
-  profileValidation.toggleButtonState();
-  popupProfileName.value = ProfileInfo.getUserInfo().name;
-  popupProfileDescription.value = ProfileInfo.getUserInfo().description;
-  PopupEditProfile.open();
-
-});
+buttonEditProfile.addEventListener('click', handleEditProfile);
 
 buttonAddCard.addEventListener('click', function() {
-  PopupAddCard.open();
+  popupAddCard.open();
   addCardValidation.toggleButtonState();
 });

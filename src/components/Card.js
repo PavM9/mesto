@@ -6,12 +6,11 @@ export default class Card {
   }
 
   _getTemplate() {
-    const cardTemplate = document
+    return document
       .querySelector(this._cardSelector)
       .content
       .querySelector('.card')
       .cloneNode(true);
-    return cardTemplate;
   }
 
   initializeCard () {
@@ -31,8 +30,8 @@ export default class Card {
     this._buttonLike.addEventListener('click', (evt) => {
       evt.target.classList.toggle('card__like-button_is-active');
     });
-    this._buttonDelete.addEventListener('click', (evt) => {
-      evt.target.closest('.card').remove();
+    this._buttonDelete.addEventListener('click', () => {
+      this._element.remove();
     });
     this._cardImage.addEventListener('click', () => {
       this._handleCardClick({
