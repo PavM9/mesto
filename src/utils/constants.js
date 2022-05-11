@@ -31,7 +31,7 @@ const cardImage6 = new URL('../images/karelia.jpg', import.meta.url);
 export const initialCards = [
   {
     name: 'Териберка',
-    link: 'https://images.unsplash.com/photo-1614793382121-5c607c29a1fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1175&q=80',
+    link: cardImage1,
     alt: 'Заброшенное судно на песчаном берегу'
   },
   {
