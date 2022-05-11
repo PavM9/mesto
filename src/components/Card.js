@@ -1,15 +1,9 @@
-import { openPopup } from "./utils.js";
-
-const popupFullScreen = document.querySelector('.popup_type_image-fullscreen')
-const popupImageContainer = popupFullScreen.querySelector('.popup__image-container');
-const popupImage = popupImageContainer.querySelector('.popup__image');
-const popupImageCaption = popupImageContainer.querySelector('.popup__image-caption');
-
-export class Card {
-  constructor(data, cardSelector) {
+export default class Card {
+  constructor({ data, handleCardClick }, cardSelector) {
     this._title = data.name;
     this._link = data.link;
     this._alt = data.alt;
+    this._handleCardClick = handleCardClick;
     this._cardSelector = cardSelector;
   }
 
@@ -43,10 +37,11 @@ export class Card {
       evt.target.closest('.card').remove();
     });
     this._cardImage.addEventListener('click', () => {
-      popupImage.src = this._link;
-      popupImage.alt = this._alt ? this._alt : this._title;
-      popupImageCaption.textContent = this._title;
-      openPopup(popupFullScreen);
+      this._handleCardClick({
+        name: this._title,
+        alt: this._alt ? this._alt : this._title,
+        src: this._link
+      });
       });
   };
 }
