@@ -1,15 +1,10 @@
-import { openPopup } from "./utils.js";
-
-const popupFullScreen = document.querySelector('.popup_type_image-fullscreen')
-const popupImageContainer = popupFullScreen.querySelector('.popup__image-container');
-const popupImage = popupImageContainer.querySelector('.popup__image');
-const popupImageCaption = popupImageContainer.querySelector('.popup__image-caption');
-
-export class Card {
-  constructor(data, cardSelector) {
-    this._title = data.name;
-    this._link = data.link;
-    this._alt = data.alt;
+export default class Card {
+  constructor({ item, handleCardClick }, cardSelector) {
+    // this._title = data.name;
+    // this._link = data.link;
+    // this._alt = data.alt;
+    this._item = item;
+    this._handleCardClick = handleCardClick;
     this._cardSelector = cardSelector;
   }
 
@@ -26,9 +21,12 @@ export class Card {
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.card__image');
     this._cardTitle = this._element.querySelector('.card__title');
-    this._cardImage.src = this._link;
-    this._cardImage.alt = this._alt ? this._alt : this._title;
-    this._cardTitle.textContent = this._title;
+    // this._cardImage.src = this._link;
+    // this._cardImage.alt = this._alt ? this._alt : this._title;
+    // this._cardTitle.textContent = this._title;
+    this._cardImage.src = this._item.link;
+    this._cardImage.alt = this._item.alt ? this._item.alt : this._item.title;
+    this._cardTitle.textContent = this._item.name;
     this._setEventListeners();
     return this._element;
   }
@@ -43,10 +41,11 @@ export class Card {
       evt.target.closest('.card').remove();
     });
     this._cardImage.addEventListener('click', () => {
-      popupImage.src = this._link;
-      popupImage.alt = this._alt ? this._alt : this._title;
-      popupImageCaption.textContent = this._title;
-      openPopup(popupFullScreen);
+      this._handleCardClick({
+        name: this._item.name,
+        alt: this._item.alt ? this._item.alt : this._item.name,
+        src: this._item.link
+      });
       });
   };
 }
