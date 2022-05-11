@@ -1,8 +1,8 @@
 // переменные элементов страницы
-export const cardsContainer = '.cards__container';
-export const cardTemplate = '#card-template';
-export const profileName = '.profile__name';
-export const profileDescription = '.profile__description';
+export const cardsContainerSelector = '.cards__container';
+export const cardTemplateSelector = '#card-template';
+export const profileNameSelector = '.profile__name';
+export const profileDescriptionSelector = '.profile__description';
 
 
 //переменные для кнопок
