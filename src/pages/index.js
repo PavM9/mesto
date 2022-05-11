@@ -20,34 +20,34 @@ profileValidation.enableValidation();
 addCardValidation.enableValidation();
 
 // создание карточек
-// const CardSection = new Section({items: initialCards, renderer: (data) => {
-//   const additionalCard = new Card({
-//     data,
-//     handleCardClick: () => {
-//       PopupImage.open(additionalCard._link, additionalCard._alt, additionalCard._title)
-//     }}, cardTemplate);
-//   CardSection.addItem(additionalCard.initializeCard());
-// }}, cardsContainer);
-// CardSection.addInitialItems();
-
-const createNewCard = (data) => {
-  const card = new Card({
+const CardSection = new Section({items: initialCards, renderer: (data) => {
+  const additionalCard = new Card({
     data,
     handleCardClick: () => {
-      PopupImage.open(data);
-    }
+      PopupImage.open(additionalCard._link, additionalCard._alt, additionalCard._title)
+    }}, cardTemplate);
+  CardSection.addItem(additionalCard.initializeCard());
+}}, cardsContainer);
+CardSection.addInitialItems();
 
-  }, cardTemplate);
-  return card.initializeCard();
+// const createNewCard = (data) => {
+//   const card = new Card({
+//     data,
+//     handleCardClick: () => {
+//       PopupImage.open(data);
+//     }
 
-}
-console.log(createNewCard())
-const cardList = new Section({
-    renderer: (data) => {
-      cardList.addInitialItems(createNewCard(data));
-    }
-  }, cardsContainer
-);
+//   }, cardTemplate);
+//   return card.initializeCard();
+
+// }
+// console.log(createNewCard())
+// const cardList = new Section({
+//     renderer: (data) => {
+//       cardList.addInitialItems(createNewCard(data));
+//     }
+//   }, cardsContainer
+// );
 
 // создание попапов
 const PopupImage = new PopupWithImage('.popup_type_image-fullscreen');
@@ -56,18 +56,18 @@ const PopupEditProfile = new PopupWithForm('.popup_type_edit-profile',() => {
   ProfileInfo.setUserInfo(data.name, data.description);
 });
 
-// const PopupAddCard = new PopupWithForm('.popup_type_add-card',() => {
-//   const data = PopupAddCard._getInputValues();
-//   console.log (data)
-//   const additionalCard = new Card({
-//     data, handleCardClick: () => {PopupImage.open(additionalCard._link, additionalCard._alt, additionalCard._title)}}, cardTemplate);
-//   CardSection.addItem(additionalCard.initializeCard());
-// });
 const PopupAddCard = new PopupWithForm('.popup_type_add-card',() => {
   const data = PopupAddCard._getInputValues();
-  // cardList.addInitialItems(createNewCard(data));
-  cardList.addItem(createNewCard(data));
+  console.log (data)
+  const additionalCard = new Card({
+    data, handleCardClick: () => {PopupImage.open(additionalCard._link, additionalCard._alt, additionalCard._title)}}, cardTemplate);
+  CardSection.addItem(additionalCard.initializeCard());
 });
+// const PopupAddCard = new PopupWithForm('.popup_type_add-card',() => {
+//   const data = PopupAddCard._getInputValues();
+//   // cardList.addInitialItems(createNewCard(data));
+//   cardList.addItem(createNewCard(data));
+// });
 
 PopupImage.setEventListeners();
 PopupEditProfile.setEventListeners();
