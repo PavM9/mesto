@@ -1,5 +1,7 @@
 // переменные элементов страницы
+const cardsContainer = document.querySelector('.cards__container');
 export const cardsContainerSelector = '.cards__container';
+const cardTemplate = document.querySelector('#card-template');
 export const cardTemplateSelector = '#card-template';
 export const profileNameSelector = '.profile__name';
 export const profileDescriptionSelector = '.profile__description';
@@ -8,6 +10,7 @@ export const profileDescriptionSelector = '.profile__description';
 //переменные для кнопок
 export const buttonEditProfile = document.querySelector('.profile__edit-button');
 export const buttonAddCard = document.querySelector('.profile__add-card-button');
+export const buttonDeleteCard = cardTemplate.querySelector('.card__delete-button');
 
 // переменные для popupEditProfile
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');

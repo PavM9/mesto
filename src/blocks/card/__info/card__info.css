@@ -6,7 +6,8 @@
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  margin: 25px 0 0;
+  align-items: center;
+  margin: 22px 0 0;
   padding: 0 15px 0 21px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;

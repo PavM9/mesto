@@ -7,9 +7,10 @@ import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithSubmit from '../components/PopupWithSubmit';
 import UserInfo from '../components/UserInfo.js';
 import { cardsContainerSelector, cardTemplateSelector, profileNameSelector, profileDescriptionSelector,
-  buttonEditProfile, buttonAddCard, formEditProfile,
+  buttonEditProfile, buttonAddCard, buttonDeleteCard, formEditProfile,
   popupProfileName, popupProfileDescription, formAddCard, initialCards, settingsObj } from '../utils/constants.js';
 
 // запуск валидации форм
@@ -25,7 +26,15 @@ const createNewCard = (item) => {
     item,
     handleCardClick: () => {
       popupWithImage.open(item)
+    },
+    handleCardDelete: () => {
+      popupConfirmDelete.open()
+      popupConfirmDelete.changeAction(() => {
+        card.deleteCard()
+        popupConfirmDelete.close()
+      })
     }
+
   }, cardTemplateSelector);
   return card.initializeCard();
 }
@@ -54,10 +63,17 @@ const popupAddCard = new PopupWithForm('.popup_type_add-card', {
      },
   });
 
+const popupConfirmDelete = new PopupWithSubmit({popupSelector: '.popup_type_confirm',
+renderer: () => {
+  Card.deleteCard()
+}
+});
+
 // обработчики событий
 popupWithImage.setEventListeners();
 popupEditProfile.setEventListeners();
 popupAddCard.setEventListeners();
+popupConfirmDelete.setEventListeners();
 
 const handleEditProfile = () => {
   profileValidation.toggleButtonState();
@@ -74,3 +90,7 @@ buttonAddCard.addEventListener('click', function() {
   popupAddCard.open();
   addCardValidation.toggleButtonState();
 });
+
+// buttonDeleteCard.addEventListener('click', function() {
+//   popupConfirmDelete.open();
+// });
