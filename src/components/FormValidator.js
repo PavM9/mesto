@@ -37,7 +37,7 @@ export default class FormValidator {
     })
   };
 
-  toggleButtonState = () => {
+  _toggleButtonState = () => {
     if (this._hasInvalidInput()) {
       this._buttonElement.classList.add(this._inactiveButtonClass);
       this._buttonElement.disabled = true;
@@ -47,14 +47,22 @@ export default class FormValidator {
     };
   };
 
+  resetValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement)
+    });
+  }
+
+
   enableValidation = () => {
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-    this.toggleButtonState();
+    this._toggleButtonState();
     this._inputList.forEach((formInput) => {
       formInput.addEventListener('input', () => {
         this._checkInputValidity(formInput);
-        this.toggleButtonState();
+        this._toggleButtonState();
       });
     });
   };

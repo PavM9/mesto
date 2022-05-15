@@ -166,7 +166,6 @@ popupAddCard.setEventListeners();
 popupConfirmDelete.setEventListeners();
 
 const handleEditProfile = () => {
-  profileValidation.toggleButtonState();
   const { name, description } = profileInfo.getUserInfo();
   popupProfileName.value = name;
   popupProfileDescription.value = description;
@@ -174,15 +173,18 @@ const handleEditProfile = () => {
 }
 
 // отслеживание кнопок
-buttonEditProfile.addEventListener('click', handleEditProfile);
+buttonEditProfile.addEventListener('click', function () {
+  profileValidation.resetValidation();
+  handleEditProfile()
+});
 
 buttonAddCard.addEventListener('click', function() {
-  addCardValidation.toggleButtonState();
+  addCardValidation.resetValidation();
   popupAddCard.open();
 });
 
 buttonEditAvatar.addEventListener('click', function() {
-  avatarValidation.toggleButtonState();
+  avatarValidation.resetValidation();
   popupEditAvatar.open();
 
 });
