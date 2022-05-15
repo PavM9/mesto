@@ -84,7 +84,7 @@ class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: item.link
+        avatar: item.avatar
       })
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status))

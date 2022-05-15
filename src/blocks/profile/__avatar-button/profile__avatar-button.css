@@ -6,7 +6,7 @@
   border: none;
   padding: 0;
   background: transparent;
-  border: none;
+  z-index:0;
 }
 
 .profile__avatar-button:focus {

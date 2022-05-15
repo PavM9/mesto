@@ -114,18 +114,15 @@ const popupEditProfile = new PopupWithForm('.popup_type_edit-profile', {
 
 const popupEditAvatar = new PopupWithForm('.popup_type_avatar', {
   handleFormSubmit: (item) => {
-    console.log(item)
     popupEditAvatar.loadingMessage(true);
     api.editAvatar(item)
     .then(() => {
       profileInfo.setUserAvatar(item.avatar);
     })
-    .then(err => console.log(`Ошибка: ${err}`))
-    .catch(console.log())
+    .catch(err => console.log(`Ошибка: ${err}`))
     .finally(() => {
       popupEditAvatar.loadingMessage(false);
       popupEditAvatar.close();
-      // profileInfo.getUserInfo();
     })
   }
 });
@@ -168,14 +165,6 @@ const handleEditProfile = () => {
   popupProfileDescription.value = description;
   popupEditProfile.open();
 }
-
-// const handleEditAvatar = () => {
-//   avatarValidation.toggleButtonState();
-//   const { name, description } = profileInfo.getUserInfo();
-//   popupProfileName.value = name;
-//   popupProfileDescription.value = description;
-//   popupEditProfile.open();
-// }
 
 // отслеживание кнопок
 buttonEditProfile.addEventListener('click', handleEditProfile);

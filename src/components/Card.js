@@ -26,7 +26,6 @@ export default class Card {
     this._likes = this._item.likes;
     this._id = this._item._id;
     this._ownerId = this._item.owner._id;
-    console.log(this._id)
     this._cardImage.src = this._item.link;
     this._cardImage.alt = this._item.alt ? this._item.alt : this._item.name;
     this._cardTitle.textContent = this._item.name;
