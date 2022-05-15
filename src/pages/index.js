@@ -73,13 +73,14 @@ const createNewCard = (item) => {
       }
     },
     handleCardDelete: (_id) => {
-      console.log(_id)
       popupConfirmDelete.open()
       popupConfirmDelete.changeAction(() => {
         api.deleteCard(_id)
         .then(()=> {
           card.deleteCard();
-          popupConfirmDelete.close();
+          if(api._checkResponse) {
+            popupConfirmDelete.close();
+          }
         })
         .catch(err => console.log(`Ошибка: ${err}`))
       })
@@ -102,12 +103,14 @@ const popupEditProfile = new PopupWithForm('.popup_type_edit-profile', {
     popupEditProfile.loadingMessage(true)
     api.editProfile(item)
     .then(() => {
-      profileInfo.setUserInfo(item.name, item.description)
+      profileInfo.setUserInfo(item.name, item.description);
+      if(api._checkResponse) {
+        popupEditProfile.close();
+      }
     })
     .catch(err => console.log(`Ошибка: ${err}`))
     .finally(() => {
       popupEditProfile.loadingMessage(false);
-      popupEditProfile.close();
     })
   }
 });
@@ -118,11 +121,13 @@ const popupEditAvatar = new PopupWithForm('.popup_type_avatar', {
     api.editAvatar(item)
     .then(() => {
       profileInfo.setUserAvatar(item.avatar);
+      if(api._checkResponse) {
+        popupEditAvatar.close();
+      }
     })
     .catch(err => console.log(`Ошибка: ${err}`))
     .finally(() => {
       popupEditAvatar.loadingMessage(false);
-      popupEditAvatar.close();
     })
   }
 });
@@ -133,11 +138,13 @@ const popupAddCard = new PopupWithForm('.popup_type_add-card', {
     api.addCard(item)
     .then(res => {
       cardList.addItem(createNewCard(res));
+      if(api._checkResponse) {
+        popupAddCard.close();
+      }
     })
     .catch(err => console.log(`Ошибка: ${err}`))
     .finally(() => {
       popupAddCard.loadingMessage(false);
-      popupAddCard.close();
     })
   }
 });

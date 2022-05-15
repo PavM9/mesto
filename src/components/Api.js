@@ -4,12 +4,20 @@ class Api {
     this._headers = headers;
   }
 
+//Проверка ответа сервера
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(res.status);
+  }
+
   //Загрузка информации о пользователе с сервера
   _getProfile() {
     return fetch(`${this._groupUrl}/users/me`, {
       headers: this._headers
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._checkResponse)
   }
 
   //Загрузка карточек с сервера
@@ -17,12 +25,14 @@ class Api {
     return fetch(`${this._groupUrl}/cards`, { // this._groupUrl + '/cards'
       headers: this._headers
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    // .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._checkResponse)
   }
 
   getAppInfo() {
     return Promise.all([this._getInitialCards(), this._getProfile()]);
   }
+
 
   //Редактирование профиля
   editProfile(item) {
@@ -35,7 +45,7 @@ class Api {
         about: item.description
       })
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._checkResponse)
   }
 
   //Добавление новой карточки
@@ -48,7 +58,8 @@ class Api {
         link: item.link,
       })
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    // .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._checkResponse)
   }
 
   //Удаление карточки
@@ -57,7 +68,8 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    // .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._checkResponse)
   }
 
   //Cнятие лайка
@@ -66,7 +78,8 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    // .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._checkResponse)
   }
 
   //Постановка лайка
@@ -75,7 +88,8 @@ class Api {
       method: 'PUT',
       headers: this._headers
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    // .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._checkResponse)
   }
 
   //Обновление аватара пользователя
@@ -87,7 +101,8 @@ class Api {
         avatar: item.avatar
       })
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    // .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._checkResponse)
   }
 }
 
