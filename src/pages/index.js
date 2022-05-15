@@ -19,14 +19,11 @@ import {
   buttonEditProfile,
   buttonEditAvatar,
   buttonAddCard,
-  buttonDeleteCard,
   formEditProfile,
   popupProfileName,
   popupProfileDescription,
   formEditAvatar,
-  popupAvatarLink,
   formAddCard,
-  initialCards,
   settingsObj
 } from '../utils/constants.js';
 

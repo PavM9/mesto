@@ -7,7 +7,6 @@ export const profileNameSelector = '.profile__name';
 export const profileDescriptionSelector = '.profile__description';
 export const profileAvatarSelector = '.profile__avatar'
 
-
 //переменные для кнопок
 export const buttonEditProfile = document.querySelector('.profile__edit-button');
 export const buttonEditAvatar = document.querySelector('.profile__avatar-button');
