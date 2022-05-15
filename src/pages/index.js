@@ -175,7 +175,7 @@ const handleEditProfile = () => {
 // отслеживание кнопок
 buttonEditProfile.addEventListener('click', function () {
   profileValidation.resetValidation();
-  handleEditProfile()
+  handleEditProfile();
 });
 
 buttonAddCard.addEventListener('click', function() {
@@ -186,6 +186,5 @@ buttonAddCard.addEventListener('click', function() {
 buttonEditAvatar.addEventListener('click', function() {
   avatarValidation.resetValidation();
   popupEditAvatar.open();
-
 });
 
