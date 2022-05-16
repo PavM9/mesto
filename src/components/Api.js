@@ -25,7 +25,6 @@ class Api {
     return fetch(`${this._groupUrl}/cards`, { // this._groupUrl + '/cards'
       headers: this._headers
     })
-    // .then(res => res.ok ? res.json() : Promise.reject(res.status))
     .then(this._checkResponse)
   }
 
@@ -58,7 +57,6 @@ class Api {
         link: item.link,
       })
     })
-    // .then(res => res.ok ? res.json() : Promise.reject(res.status))
     .then(this._checkResponse)
   }
 
@@ -68,7 +66,6 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    // .then(res => res.ok ? res.json() : Promise.reject(res.status))
     .then(this._checkResponse)
   }
 
@@ -78,7 +75,6 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    // .then(res => res.ok ? res.json() : Promise.reject(res.status))
     .then(this._checkResponse)
   }
 
@@ -88,7 +84,6 @@ class Api {
       method: 'PUT',
       headers: this._headers
     })
-    // .then(res => res.ok ? res.json() : Promise.reject(res.status))
     .then(this._checkResponse)
   }
 
@@ -101,7 +96,6 @@ class Api {
         avatar: item.avatar
       })
     })
-    // .then(res => res.ok ? res.json() : Promise.reject(res.status))
     .then(this._checkResponse)
   }
 }

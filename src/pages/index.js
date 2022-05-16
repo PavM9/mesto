@@ -78,9 +78,7 @@ const createNewCard = (item) => {
         api.deleteCard(_id)
         .then(()=> {
           card.deleteCard();
-          if(api._checkResponse) {
-            popupConfirmDelete.close();
-          }
+          popupConfirmDelete.close();
         })
         .catch(err => console.log(`Ошибка: ${err}`))
       })
@@ -104,9 +102,7 @@ const popupEditProfile = new PopupWithForm('.popup_type_edit-profile', {
     api.editProfile(item)
     .then(() => {
       profileInfo.setUserInfo(item.name, item.description);
-      if(api._checkResponse) {
-        popupEditProfile.close();
-      }
+      popupEditProfile.close();
     })
     .catch(err => console.log(`Ошибка: ${err}`))
     .finally(() => {
@@ -121,9 +117,7 @@ const popupEditAvatar = new PopupWithForm('.popup_type_avatar', {
     api.editAvatar(item)
     .then(() => {
       profileInfo.setUserAvatar(item.avatar);
-      if(api._checkResponse) {
-        popupEditAvatar.close();
-      }
+      popupEditAvatar.close();
     })
     .catch(err => console.log(`Ошибка: ${err}`))
     .finally(() => {
@@ -138,9 +132,7 @@ const popupAddCard = new PopupWithForm('.popup_type_add-card', {
     api.addCard(item)
     .then(res => {
       cardList.addItem(createNewCard(res));
-      if(api._checkResponse) {
-        popupAddCard.close();
-      }
+      popupAddCard.close();
     })
     .catch(err => console.log(`Ошибка: ${err}`))
     .finally(() => {
